@@ -1,14 +1,18 @@
+import Container from '@/components/Container';
 import Loader from '@/components/Loader';
 import OrdersList from '@/components/OrdersList';
+import Title from '@/components/Title';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchOrders } from '@/redux/orders/operations';
-import { selectIsLoading } from '@/redux/orders/selectors';
+import { selectIsLoading, selectOrders } from '@/redux/orders/selectors';
 import { FC, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const OrdersPage: FC = () => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
+  const ordersCount = useAppSelector(selectOrders).length;
+  const pageTitle = `Приходы / ${ordersCount}`;
 
   useEffect(() => {
     const promise = dispatch(fetchOrders());
@@ -21,10 +25,13 @@ const OrdersPage: FC = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <OrdersList />
-      <Outlet />
-    </>
+    <div>
+      <Title title={pageTitle} />
+      <Container>
+        <OrdersList />
+        <Outlet />
+      </Container>
+    </div>
   );
 };
 
