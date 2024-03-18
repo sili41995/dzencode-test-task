@@ -1,15 +1,7 @@
 import { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import {
-  Avatar,
-  Container,
-  ImgWrap,
-  List,
-  ListItem,
-  SettingsBtn,
-} from './NavBar.styled';
-import { PagePaths } from '@/constants';
+import { Avatar, Container, ImgWrap, SettingsBtn } from './NavBar.styled';
 import { IoMdSettings } from 'react-icons/io';
+import NavigationMenu from '@/components/NavigationMenu';
 
 const NavBar: FC = () => {
   return (
@@ -25,37 +17,7 @@ const NavBar: FC = () => {
           <IoMdSettings size={24} />
         </SettingsBtn>
       </ImgWrap>
-      <List className='nav nav-underline'>
-        <ListItem className='nav-item'>
-          <NavLink
-            className='nav-link'
-            aria-current='page'
-            to={PagePaths.orders}
-          >
-            Приход
-          </NavLink>
-        </ListItem>
-        <ListItem className='nav-item'>
-          <NavLink className='nav-link' to={PagePaths.groups}>
-            Группы
-          </NavLink>
-        </ListItem>
-        <ListItem className='nav-item'>
-          <NavLink className='nav-link' to={PagePaths.products}>
-            Продукты
-          </NavLink>
-        </ListItem>
-        <ListItem className='nav-item'>
-          <NavLink className='nav-link' to={PagePaths.users}>
-            Пользователи
-          </NavLink>
-        </ListItem>
-        <ListItem className='nav-item'>
-          <NavLink className='nav-link' to={PagePaths.settings}>
-            Настройки
-          </NavLink>
-        </ListItem>
-      </List>
+      <NavigationMenu />
     </Container>
   );
 };

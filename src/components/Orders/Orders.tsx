@@ -2,7 +2,7 @@ import { useAppSelector } from '@/hooks/redux';
 import { selectOrders } from '@/redux/orders/selectors';
 import { FC } from 'react';
 import OrdersListItem from '@/components/OrdersListItem';
-import { List } from './OrdersList.styled';
+import { List } from './Orders.styled';
 
 const OrdersList: FC = () => {
   const orders = useAppSelector(selectOrders);

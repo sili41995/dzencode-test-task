@@ -1,7 +1,7 @@
 import AddBtn from '@/components/AddBtn';
 import Container from '@/components/Container';
 import Loader from '@/components/Loader';
-import OrdersList from '@/components/OrdersList';
+import Orders from '@/components/Orders';
 import Title from '@/components/Title';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchOrders } from '@/redux/orders/operations';
@@ -32,7 +32,7 @@ const OrdersPage: FC = () => {
         <Title title={pageTitle} />
       </Container>
       <Container>
-        <OrdersList />
+        <Orders />
         <Outlet />
       </Container>
     </div>
