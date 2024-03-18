@@ -1,8 +1,9 @@
 import { Global, css } from '@emotion/react';
 import 'modern-normalize';
+import { FC } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
-const GlobalStyles = () => (
+const GlobalStyles: FC = () => (
   <Global
     styles={css`
       body {

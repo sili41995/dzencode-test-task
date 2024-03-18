@@ -7,7 +7,7 @@ export interface IPrice {
 export type Prices = IPrice[];
 
 export interface IProduct {
-  id: number;
+  _id: string;
   serialNumber: number;
   isNew: number;
   photo: string;
@@ -26,7 +26,7 @@ export interface IProduct {
 export type Products = IProduct[];
 
 export interface IOrder {
-  id: number;
+  _id: string;
   title: string;
   date: string;
   description: string;
@@ -50,4 +50,16 @@ export interface IOrdersState {
 export interface IState {
   products: IProductsState;
   orders: IOrdersState;
+}
+
+export interface IGetOrderDateParams {
+  orderMonth: string;
+  orderDate: string;
+}
+
+export interface IGetOrderPrice {
+  defPrice: number;
+  price: number;
+  defSymbol: string;
+  symbol: string;
 }

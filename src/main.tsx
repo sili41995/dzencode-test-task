@@ -6,14 +6,18 @@ import { ThemeProvider } from '@emotion/react';
 import GlobalStyles from '@/components/GlobalStyles';
 import Toast from '@/components/Toast';
 import { theme } from '@/constants';
+import { Provider } from 'react-redux';
+import store from '@/redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <App />
-        <GlobalStyles />
-        <Toast />
+        <Provider store={store}>
+          <App />
+          <GlobalStyles />
+          <Toast />
+        </Provider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

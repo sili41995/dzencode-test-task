@@ -3,7 +3,7 @@ declare module '@emotion/react' {
 }
 
 interface ITheme {
-  // colors: {};
+  colors: { white: string };
   // fontFamily: {};
   // fontWeight: {};
   // fontSize: {};
@@ -20,7 +20,7 @@ interface ITheme {
 }
 
 const theme: ITheme = {
-  // colors: {},
+  colors: { white: '#ffffff' },
   // fontFamily: {},
   // fontWeight: {},
   // fontSize: {},
