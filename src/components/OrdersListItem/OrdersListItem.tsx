@@ -17,6 +17,7 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
   const { _id, title, products, date } = order;
   const { pathname } = useLocation();
   const isActive = pathname.includes(_id);
+  const isOrdersPage = pathname.endsWith(PagePaths.orders);
   const productsCount = products.length;
   const { orderDate, orderMonth } = getOrderDateParams(date);
   const { defPrice, price, defSymbol, symbol } = getOrderPrice(products);
@@ -27,7 +28,7 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
       aria-current={isActive && 'true'}
     >
       <NavLink to={`${PagePaths.orders}/${_id}`}>
-        <span className='h6'>{title}</span>
+        {isOrdersPage && <span className='h6'>{title}</span>}
         <ListBtn type='button' className='btn btn-light'>
           <FaListUl size={20} />
         </ListBtn>
