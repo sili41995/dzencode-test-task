@@ -1,3 +1,4 @@
+import AddBtn from '@/components/AddBtn';
 import Container from '@/components/Container';
 import Loader from '@/components/Loader';
 import OrdersList from '@/components/OrdersList';
@@ -26,7 +27,10 @@ const OrdersPage: FC = () => {
     <Loader />
   ) : (
     <div>
-      <Title title={pageTitle} />
+      <Container>
+        <AddBtn />
+        <Title title={pageTitle} />
+      </Container>
       <Container>
         <OrdersList />
         <Outlet />
