@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react';
+
 export interface IPrice {
   value: number;
   symbol: string;
@@ -63,3 +65,7 @@ export interface IGetOrderPrice {
   defSymbol: string;
   symbol: string;
 }
+
+export type Func = () => void;
+
+export type DivClickEvent = MouseEvent<HTMLDivElement>;
