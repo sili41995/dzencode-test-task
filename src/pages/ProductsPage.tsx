@@ -1,5 +1,6 @@
 import Container from '@/components/Container';
 import DefaultMessage from '@/components/DefaultMessage';
+import Filter from '@/components/Filter';
 import Loader from '@/components/Loader';
 import Products from '@/components/Products';
 import SectionWrap from '@/components/SectionWrap';
@@ -31,6 +32,7 @@ const ProductsPage: FC = () => {
     <SectionWrap>
       <Container>
         <Title title={pageTitle} />
+        <Filter />
       </Container>
       {showProductsList ? (
         <Products />

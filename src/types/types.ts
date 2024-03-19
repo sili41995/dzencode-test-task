@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react';
+import { SetURLSearchParams } from 'react-router-dom';
 
 export interface IPrice {
   value: number;
@@ -73,3 +74,24 @@ export interface IGetOrderPrice {
 export type Func = () => void;
 
 export type DivClickEvent = MouseEvent<HTMLDivElement>;
+
+export interface IGetFiltersValues {
+  types: string[];
+  specifications: string[];
+}
+
+export interface IUpdateSearchParamsProps {
+  key: string;
+  value?: string;
+}
+
+export interface IUseSetSearchParams {
+  updateSearchParams: ({ key, value }: IUpdateSearchParamsProps) => void;
+  searchParams: URLSearchParams;
+  setSearchParams: SetURLSearchParams;
+}
+
+export interface IFilterProductsProps {
+  products: Products;
+  filter: string;
+}

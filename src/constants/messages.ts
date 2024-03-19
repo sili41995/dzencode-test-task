@@ -7,6 +7,7 @@ const enum Messages {
   descriptionReqErr = 'Поле Description обязательно',
   dateReqErr = 'Поле Date обязательно',
   emptyProductsList = 'Список продуктов пуст',
+  emptyFilteredProductsList = 'Ни один продукт не отвечает выбранным критериям фильтрации',
 }
 
 export default Messages;
