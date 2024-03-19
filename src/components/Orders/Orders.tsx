@@ -4,7 +4,7 @@ import { FC } from 'react';
 import OrdersListItem from '@/components/OrdersListItem';
 import { List } from './Orders.styled';
 
-const OrdersList: FC = () => {
+const Orders: FC = () => {
   const orders = useAppSelector(selectOrders);
 
   return (
@@ -16,4 +16,4 @@ const OrdersList: FC = () => {
   );
 };
 
-export default OrdersList;
+export default Orders;
