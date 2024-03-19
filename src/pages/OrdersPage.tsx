@@ -5,13 +5,13 @@ import Orders from '@/components/Orders';
 import Title from '@/components/Title';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchOrders } from '@/redux/orders/operations';
-import { selectIsOrdersLoading, selectOrders } from '@/redux/orders/selectors';
+import { selectIsLoading, selectOrders } from '@/redux/orders/selectors';
 import { FC, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const OrdersPage: FC = () => {
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(selectIsOrdersLoading);
+  const isLoading = useAppSelector(selectIsLoading);
   const ordersCount = useAppSelector(selectOrders).length;
   const pageTitle = `Приходы / ${ordersCount}`;
 

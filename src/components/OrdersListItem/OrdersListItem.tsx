@@ -15,7 +15,7 @@ import { RiDeleteBin6Fill } from 'react-icons/ri';
 import ModalWin from '@/components/ModalWin';
 import DelOrderForm from '@/components/DelOrderForm';
 import { useAppSelector } from '@/hooks/redux';
-import { selectIsOrdersLoading } from '@/redux/orders/selectors';
+import { selectIsLoading } from '@/redux/orders/selectors';
 
 const OrdersListItem: FC<IProps> = ({ order }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);
@@ -29,7 +29,7 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
   const productsCount = products.length;
   const { orderDate, orderMonth } = getOrderDateParams(date);
   const { defPrice, price, defSymbol, symbol } = getOrderPrice(products);
-  const isLoading = useAppSelector(selectIsOrdersLoading);
+  const isLoading = useAppSelector(selectIsLoading);
 
   const setModalWinState = () => {
     setShowModalWin((prevState) => !prevState);

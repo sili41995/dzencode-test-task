@@ -4,5 +4,4 @@ export const selectProducts = (state: IState) => state.products.items;
 
 export const selectError = (state: IState) => state.products.error;
 
-export const selectIsProductsLoading = (state: IState) =>
-  state.products.isLoading;
+export const selectIsLoading = (state: IState) => state.products.isLoading;
