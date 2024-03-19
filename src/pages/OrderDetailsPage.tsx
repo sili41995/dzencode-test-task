@@ -1,5 +1,6 @@
+import DefaultMessage from '@/components/DefaultMessage';
 import OrderDetails from '@/components/OrderDetails';
-import { PagePaths } from '@/constants';
+import { Messages, PagePaths } from '@/constants';
 import { useAppSelector } from '@/hooks/redux';
 import { selectOrders } from '@/redux/orders/selectors';
 import { FC } from 'react';
@@ -13,7 +14,7 @@ const OrderDetailsPage: FC = () => {
   return targetOrder ? (
     <OrderDetails order={targetOrder} />
   ) : (
-    <h1 className='display-6'>Invalid id</h1>
+    <DefaultMessage message={Messages.invalidId} />
   );
 };
 
