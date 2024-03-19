@@ -9,7 +9,11 @@ import Price from '@/components/Price';
 import Date from '@/components/Date';
 import DelBtn from '@/components/DelBtn';
 import { ListItem } from './ProductsListItem.styled';
-// import ModalWin from '@/components/ModalWin';
+import DelProductForm from '@/components/DelProductForm';
+import ModalWin from '@/components/ModalWin';
+import { useAppSelector } from '@/hooks/redux';
+import { selectIsLoading } from '@/redux/products/selectors';
+import useDeleteProduct from '@/hooks/useDeleteProduct';
 
 const ProductsListItem: FC<IProps> = ({ product }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);
@@ -22,16 +26,21 @@ const ProductsListItem: FC<IProps> = ({ product }) => {
     date,
     type,
     specification,
+    _id,
   } = product;
   const { end, start } = getGuaranteeDate(guarantee);
   const { defPrice, defSymbol, price, symbol } = getOrderPrice([product]);
   const { month, formattedDate } = getDateParams(date);
+  const isLoading = useAppSelector(selectIsLoading);
+  const deleteProduct = useDeleteProduct();
 
   const setModalWinState = () => {
     setShowModalWin((prevState) => !prevState);
   };
 
-  // const onDelBtnClick = () => {};
+  const onDelBtnClick = () => {
+    deleteProduct(_id);
+  };
 
   return (
     <>
@@ -52,19 +61,19 @@ const ProductsListItem: FC<IProps> = ({ product }) => {
         <Date date={formattedDate} month={month} />
         <DelBtn onClick={setModalWinState} disabled={false} />
       </ListItem>
-      {/* {showModalWin && (
+      {showModalWin && (
         <ModalWin
           setModalWinState={setModalWinState}
           children={
-            <DelOrderForm
-              products={products}
+            <DelProductForm
+              product={product}
               disabled={isLoading}
               setModalWinState={setModalWinState}
               onClick={onDelBtnClick}
             />
           }
         />
-      )} */}
+      )}
     </>
   );
 };

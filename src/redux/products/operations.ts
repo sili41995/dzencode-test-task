@@ -1,5 +1,5 @@
 import ordersServiceApi from '@/service/ordersServiceApi';
-import { Products } from '@/types/types';
+import { IProduct, Products } from '@/types/types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchProducts = createAsyncThunk<
@@ -18,6 +18,24 @@ export const fetchProducts = createAsyncThunk<
     try {
       const result = await ordersServiceApi.fetchProducts(signal);
       return result;
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk<
+  IProduct,
+  string,
+  { rejectValue: string }
+>(
+  'products/delete',
+  async (id: string, { rejectWithValue }: { rejectWithValue: Function }) => {
+    try {
+      const response = await ordersServiceApi.deleteProduct(id);
+      return response;
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);

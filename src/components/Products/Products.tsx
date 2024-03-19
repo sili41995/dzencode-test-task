@@ -1,7 +1,7 @@
 import { useAppSelector } from '@/hooks/redux';
 import { selectProducts } from '@/redux/products/selectors';
 import { FC } from 'react';
-import ProductsListItem from '../ProductsListItem';
+import ProductsListItem from '@/components/ProductsListItem';
 
 const Products: FC = () => {
   const products = useAppSelector(selectProducts);

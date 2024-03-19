@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import initialState from '@/redux/initialState';
 import { IProductsState } from '@/types/types';
-import { fetchProducts } from './operations';
+import { deleteProduct, fetchProducts } from './operations';
 
 const productsState: IProductsState = initialState.products;
 
@@ -17,15 +17,26 @@ const productsSlice = createSlice({
         error: initialState.orders.error,
         items: payload,
       }))
-      .addMatcher(isAnyOf(fetchProducts.pending), (state) => ({
-        ...state,
-        isLoading: true,
-      }))
-      .addMatcher(isAnyOf(fetchProducts.rejected), (state, { payload }) => ({
+      .addCase(deleteProduct.fulfilled, (state, { payload }) => ({
         ...state,
         isLoading: false,
-        error: payload as string,
-      }));
+        items: state.items.filter(({ _id }) => _id !== payload._id),
+      }))
+      .addMatcher(
+        isAnyOf(fetchProducts.pending, deleteProduct.pending),
+        (state) => ({
+          ...state,
+          isLoading: true,
+        })
+      )
+      .addMatcher(
+        isAnyOf(fetchProducts.rejected, deleteProduct.rejected),
+        (state, { payload }) => ({
+          ...state,
+          isLoading: false,
+          error: payload as string,
+        })
+      );
   },
 });
 

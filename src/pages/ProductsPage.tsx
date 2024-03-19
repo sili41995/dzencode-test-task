@@ -1,8 +1,10 @@
 import Container from '@/components/Container';
+import DefaultMessage from '@/components/DefaultMessage';
 import Loader from '@/components/Loader';
 import Products from '@/components/Products';
 import SectionWrap from '@/components/SectionWrap';
 import Title from '@/components/Title';
+import { Messages } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchProducts } from '@/redux/products/operations';
 import { selectIsLoading, selectProducts } from '@/redux/products/selectors';
@@ -13,6 +15,7 @@ const ProductsPage: FC = () => {
   const products = useAppSelector(selectProducts);
   const isLoading = useAppSelector(selectIsLoading);
   const pageTitle = `Продукты / ${products.length}`;
+  const showProductsList = Boolean(products.length);
 
   useEffect(() => {
     const promise = dispatch(fetchProducts());
@@ -29,7 +32,11 @@ const ProductsPage: FC = () => {
       <Container>
         <Title title={pageTitle} />
       </Container>
-      <Products />
+      {showProductsList ? (
+        <Products />
+      ) : (
+        <DefaultMessage message={Messages.emptyProductsList} />
+      )}
     </SectionWrap>
   );
 };
