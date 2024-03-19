@@ -5,10 +5,8 @@ import {
   BtnTitle,
   Container,
   IconWrap,
-  IsNewStatus,
   List,
   ListItem,
-  Status,
   Title,
 } from './OrderDetails.styles';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -18,7 +16,10 @@ import { FaPlus } from 'react-icons/fa';
 import DelBtn from '@/components/DelBtn';
 import { useAppSelector } from '@/hooks/redux';
 import { selectIsLoading } from '@/redux/orders/selectors';
-import DefaultMessage from '../DefaultMessage';
+import DefaultMessage from '@/components/DefaultMessage';
+import IsNewStatus from '@/components/IsNewStatus';
+import ProductTitle from '@/components/ProductTitle';
+import Status from '@/components/Status';
 
 const OrderDetails: FC<IProps> = ({ order }) => {
   const { products, title } = order;
@@ -47,15 +48,10 @@ const OrderDetails: FC<IProps> = ({ order }) => {
         <List className='list-group'>
           {products.map(({ _id, photo, title, serialNumber, isNew }) => (
             <ListItem className='list-group-item' key={_id}>
-              <Status></Status>
+              <Status isNew={isNew} />
               <img src={photo} alt={title} width='60' height='60' />
-              <div>
-                <p className='h5'>{title}</p>
-                <p className='h6'>{serialNumber}</p>
-              </div>
-              <IsNewStatus className='h5' isNew={isNew}>
-                {isNew ? 'Свободен' : 'В работе'}
-              </IsNewStatus>
+              <ProductTitle serialNumber={serialNumber} title={title} />
+              <IsNewStatus isNew={isNew} />
               <DelBtn onClick={onDelBtnClick} disabled={isLoading} />
             </ListItem>
           ))}

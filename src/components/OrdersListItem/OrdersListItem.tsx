@@ -10,13 +10,14 @@ import {
   Wrapper,
 } from './OrdersListItem.styled';
 import { FaListUl } from 'react-icons/fa';
-import { getOrderDateParams, getOrderPrice } from '@/utils';
+import { getDateParams, getOrderPrice } from '@/utils';
 import ModalWin from '@/components/ModalWin';
 import DelOrderForm from '@/components/DelOrderForm';
 import { useAppSelector } from '@/hooks/redux';
 import { selectIsLoading } from '@/redux/orders/selectors';
 import { useDeleteOrder } from '@/hooks';
 import DelBtn from '@/components/DelBtn';
+import Date from '@/components/Date';
 
 const OrdersListItem: FC<IProps> = ({ order }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);
@@ -30,7 +31,7 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
     location.pathname.endsWith(`${PagePaths.orders}/`) ||
     location.pathname === PagePaths.homePath;
   const productsCount = products.length;
-  const { orderDate, orderMonth } = getOrderDateParams(date);
+  const { month, formattedDate } = getDateParams(date);
   const { defPrice, price, defSymbol, symbol } = getOrderPrice(products);
 
   const setModalWinState = () => {
@@ -56,10 +57,7 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
             <span className='h5'>{productsCount}</span>
             <span className='h6'>Продукта</span>
           </Products>
-          <Wrapper>
-            <p className='h6'>{orderMonth} / 12</p>
-            <p className='h5'>{orderDate}</p>
-          </Wrapper>
+          <Date month={month} date={formattedDate} />
           <Wrapper>
             <span className='h6'>{`${price} ${symbol}`}</span>
             <span className='h5'>{`${defPrice} ${defSymbol}`}</span>

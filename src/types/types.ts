@@ -56,9 +56,9 @@ export interface IState {
   orders: IOrdersState;
 }
 
-export interface IGetOrderDateParams {
-  orderMonth: string;
-  orderDate: string;
+export interface IGetDateParams {
+  month: string;
+  formattedDate: string;
 }
 
 export interface IGetOrderPrice {

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { IStyledProps } from './OrderDetails.types';
 
 export const Container = styled.div`
   position: relative;
@@ -48,17 +47,4 @@ export const ListItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
-
-export const Status = styled.span`
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.greenColor};
-`;
-
-export const IsNewStatus = styled.p<IStyledProps>`
-  color: ${({ isNew, theme }) =>
-    isNew ? theme.colors.greenColor : theme.colors.redColor};
 `;
