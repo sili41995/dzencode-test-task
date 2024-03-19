@@ -2,8 +2,8 @@ import { FC, useEffect } from 'react';
 import { IProps } from './ModalWin.types';
 import { createPortal } from 'react-dom';
 import { DivClickEvent } from '@/types/types';
-import { Backdrop, CloseBtn, Container } from './ModalWin.styled';
-import { CgClose } from 'react-icons/cg';
+import { Backdrop, Container } from './ModalWin.styled';
+import CloseBtn from '@/components/CloseBtn';
 
 const ModalWin: FC<IProps> = ({ children, setModalWinState }) => {
   const modalRoot = document.querySelector('#modal-root');
@@ -35,9 +35,7 @@ const ModalWin: FC<IProps> = ({ children, setModalWinState }) => {
     createPortal(
       <Backdrop onClick={hideModalWin}>
         <Container>
-          <CloseBtn onClick={setModalWinState}>
-            <CgClose size={20} />
-          </CloseBtn>
+          <CloseBtn onClick={setModalWinState} />
           {children}
         </Container>
       </Backdrop>,

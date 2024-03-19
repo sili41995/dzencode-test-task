@@ -16,57 +16,63 @@ import ModalWin from '@/components/ModalWin';
 import DelOrderForm from '@/components/DelOrderForm';
 import { useAppSelector } from '@/hooks/redux';
 import { selectIsLoading } from '@/redux/orders/selectors';
+import { useDeleteOrder } from '@/hooks';
 
 const OrdersListItem: FC<IProps> = ({ order }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);
+  const deleteOrder = useDeleteOrder();
+  const isLoading = useAppSelector(selectIsLoading);
+  const location = useLocation();
   const { _id, title, products, date } = order;
-  const { pathname } = useLocation();
-  const isActive = pathname.includes(_id);
+  const isActive = location.pathname.includes(_id);
   const isOrdersPage =
-    pathname.endsWith(PagePaths.orders) ||
-    pathname.endsWith(`${PagePaths.orders}/`) ||
-    pathname === PagePaths.homePath;
+    location.pathname.endsWith(PagePaths.orders) ||
+    location.pathname.endsWith(`${PagePaths.orders}/`) ||
+    location.pathname === PagePaths.homePath;
   const productsCount = products.length;
   const { orderDate, orderMonth } = getOrderDateParams(date);
   const { defPrice, price, defSymbol, symbol } = getOrderPrice(products);
-  const isLoading = useAppSelector(selectIsLoading);
 
   const setModalWinState = () => {
     setShowModalWin((prevState) => !prevState);
   };
 
-  const onDelBtnClick = () => {};
+  const onDelBtnClick = () => {
+    deleteOrder(_id);
+  };
 
   return (
-    <ListItem
-      className={`list-group-item ${isActive && 'active'}`}
-      aria-current={isActive && 'true'}
-    >
-      <NavLink to={`${PagePaths.orders}/${_id}`}>
-        {isOrdersPage && <span className='h6'>{title}</span>}
-        <ListBtn type='button' className='btn btn-light'>
-          <FaListUl size={20} />
-        </ListBtn>
-        <Products>
-          <span className='h5'>{productsCount}</span>
-          <span className='h6'>Продукта</span>
-        </Products>
-        <Wrapper>
-          <p className='h6'>{orderMonth} / 12</p>
-          <p className='h5'>{orderDate}</p>
-        </Wrapper>
-        <Wrapper>
-          <span className='h6'>{`${price} ${symbol}`}</span>
-          <span className='h5'>{`${defPrice} ${defSymbol}`}</span>
-        </Wrapper>
-      </NavLink>
-      <DelBtn
-        type='button'
-        className='btn btn-light'
-        onClick={setModalWinState}
+    <>
+      <ListItem
+        className={`list-group-item ${isActive && 'active'}`}
+        aria-current={isActive && 'true'}
       >
-        <RiDeleteBin6Fill />
-      </DelBtn>
+        <NavLink to={`${PagePaths.orders}/${_id}`} state={{ from: location }}>
+          {isOrdersPage && <span className='h6'>{title}</span>}
+          <ListBtn type='button' className='btn btn-light'>
+            <FaListUl size={20} />
+          </ListBtn>
+          <Products>
+            <span className='h5'>{productsCount}</span>
+            <span className='h6'>Продукта</span>
+          </Products>
+          <Wrapper>
+            <p className='h6'>{orderMonth} / 12</p>
+            <p className='h5'>{orderDate}</p>
+          </Wrapper>
+          <Wrapper>
+            <span className='h6'>{`${price} ${symbol}`}</span>
+            <span className='h5'>{`${defPrice} ${defSymbol}`}</span>
+          </Wrapper>
+        </NavLink>
+        <DelBtn
+          type='button'
+          className='btn btn-light'
+          onClick={setModalWinState}
+        >
+          <RiDeleteBin6Fill />
+        </DelBtn>
+      </ListItem>
       {showModalWin && (
         <ModalWin
           setModalWinState={setModalWinState}
@@ -80,7 +86,7 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
           }
         />
       )}
-    </ListItem>
+    </>
   );
 };
 

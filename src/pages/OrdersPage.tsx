@@ -2,6 +2,7 @@ import AddBtn from '@/components/AddBtn';
 import Container from '@/components/Container';
 import Loader from '@/components/Loader';
 import Orders from '@/components/Orders';
+import SectionWrap from '@/components/SectionWrap';
 import Title from '@/components/Title';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchOrders } from '@/redux/orders/operations';
@@ -26,7 +27,7 @@ const OrdersPage: FC = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <div>
+    <SectionWrap>
       <Container>
         <AddBtn />
         <Title title={pageTitle} />
@@ -35,7 +36,7 @@ const OrdersPage: FC = () => {
         <Orders />
         <Outlet />
       </Container>
-    </div>
+    </SectionWrap>
   );
 };
 

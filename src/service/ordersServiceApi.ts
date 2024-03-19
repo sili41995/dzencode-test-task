@@ -1,4 +1,4 @@
-import { Orders } from '@/types/types';
+import { IOrder, Orders } from '@/types/types';
 
 class OrdersServiceApi {
   private BASE_URL = 'https://dzencode-test-tasks-rest-api.onrender.com/api';
@@ -13,6 +13,24 @@ class OrdersServiceApi {
     };
 
     return fetch(`${this.BASE_URL}/orders`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
+  deleteOrder(id: string): Promise<IOrder> {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/orders/${id}`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
