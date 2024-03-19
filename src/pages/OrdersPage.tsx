@@ -1,16 +1,19 @@
 import AddBtn from '@/components/AddBtn';
+import AddOrderForm from '@/components/AddOrderForm';
 import Container from '@/components/Container';
 import Loader from '@/components/Loader';
+import ModalWin from '@/components/ModalWin';
 import Orders from '@/components/Orders';
 import SectionWrap from '@/components/SectionWrap';
 import Title from '@/components/Title';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchOrders } from '@/redux/orders/operations';
 import { selectIsLoading, selectOrders } from '@/redux/orders/selectors';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 const OrdersPage: FC = () => {
+  const [showModalWin, setShowModalWin] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
   const ordersCount = useAppSelector(selectOrders).length;
@@ -24,19 +27,36 @@ const OrdersPage: FC = () => {
     };
   }, [dispatch]);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <SectionWrap>
-      <Container>
-        <AddBtn />
-        <Title title={pageTitle} />
-      </Container>
-      <Container>
-        <Orders />
-        <Outlet />
-      </Container>
-    </SectionWrap>
+  const setModalWinState = () => {
+    setShowModalWin((prevState) => !prevState);
+  };
+
+  const onAddBtnClick = () => {
+    setModalWinState();
+  };
+
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <SectionWrap>
+          <Container>
+            <AddBtn onClick={onAddBtnClick} />
+            <Title title={pageTitle} />
+          </Container>
+          <Container>
+            <Orders />
+            <Outlet />
+          </Container>
+        </SectionWrap>
+      )}
+      {showModalWin && (
+        <ModalWin setModalWinState={setModalWinState}>
+          <AddOrderForm />
+        </ModalWin>
+      )}
+    </>
   );
 };
 

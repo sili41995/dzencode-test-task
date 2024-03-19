@@ -13,11 +13,12 @@ import {
 } from './OrderDetails.styles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CloseBtn from '@/components/CloseBtn';
-import { PagePaths } from '@/constants';
+import { Messages, PagePaths } from '@/constants';
 import { FaPlus } from 'react-icons/fa';
 import DelBtn from '@/components/DelBtn';
 import { useAppSelector } from '@/hooks/redux';
 import { selectIsLoading } from '@/redux/orders/selectors';
+import DefaultMessage from '../DefaultMessage';
 
 const OrderDetails: FC<IProps> = ({ order }) => {
   const { products, title } = order;
@@ -25,6 +26,7 @@ const OrderDetails: FC<IProps> = ({ order }) => {
   const navigate = useNavigate();
   const redirectPath = location.state?.from ?? PagePaths.homePath;
   const isLoading = useAppSelector(selectIsLoading);
+  const shouldShowOrdersList = Boolean(products.length);
 
   const onCloseBtnClick = () => {
     navigate(redirectPath);
@@ -41,22 +43,26 @@ const OrderDetails: FC<IProps> = ({ order }) => {
         </IconWrap>
         <BtnTitle className='h6'>Добавить продукт</BtnTitle>
       </AddBtn>
-      <List className='list-group'>
-        {products.map(({ _id, photo, title, serialNumber, isNew }) => (
-          <ListItem className='list-group-item' key={_id}>
-            <Status></Status>
-            <img src={photo} alt={title} width='60' height='60' />
-            <div>
-              <p className='h5'>{title}</p>
-              <p className='h6'>{serialNumber}</p>
-            </div>
-            <IsNewStatus className='h5' isNew={isNew}>
-              {isNew ? 'Свободен' : 'В работе'}
-            </IsNewStatus>
-            <DelBtn onClick={onDelBtnClick} disabled={isLoading} />
-          </ListItem>
-        ))}
-      </List>
+      {shouldShowOrdersList ? (
+        <List className='list-group'>
+          {products.map(({ _id, photo, title, serialNumber, isNew }) => (
+            <ListItem className='list-group-item' key={_id}>
+              <Status></Status>
+              <img src={photo} alt={title} width='60' height='60' />
+              <div>
+                <p className='h5'>{title}</p>
+                <p className='h6'>{serialNumber}</p>
+              </div>
+              <IsNewStatus className='h5' isNew={isNew}>
+                {isNew ? 'Свободен' : 'В работе'}
+              </IsNewStatus>
+              <DelBtn onClick={onDelBtnClick} disabled={isLoading} />
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <DefaultMessage message={Messages.emptyProductsList} />
+      )}
       <CloseBtn onClick={onCloseBtnClick} />
     </Container>
   );

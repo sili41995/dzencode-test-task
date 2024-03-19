@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import initialState from '@/redux/initialState';
 import { IOrdersState } from '@/types/types';
-import { deleteOrder, fetchOrders } from './operations';
+import { addOrder, deleteOrder, fetchOrders } from './operations';
 
 const ordersState: IOrdersState = initialState.orders;
 
@@ -22,15 +22,20 @@ const ordersSlice = createSlice({
         isLoading: false,
         items: state.items.filter(({ _id }) => _id !== payload._id),
       }))
+      .addCase(addOrder.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        items: [...state.items, payload],
+      }))
       .addMatcher(
-        isAnyOf(fetchOrders.pending, deleteOrder.pending),
+        isAnyOf(fetchOrders.pending, addOrder.pending, deleteOrder.pending),
         (state) => ({
           ...state,
           isLoading: true,
         })
       )
       .addMatcher(
-        isAnyOf(fetchOrders.rejected, deleteOrder.rejected),
+        isAnyOf(fetchOrders.rejected, addOrder.rejected, deleteOrder.rejected),
         (state, { payload }) => ({
           ...state,
           isLoading: false,

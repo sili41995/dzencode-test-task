@@ -35,6 +35,8 @@ export interface IOrder {
   products: Products;
 }
 
+export type NewOrder = Omit<IOrder, 'products'>;
+
 export type Orders = IOrder[];
 
 export interface IProductsState {

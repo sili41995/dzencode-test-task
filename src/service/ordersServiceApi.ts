@@ -1,4 +1,4 @@
-import { IOrder, Orders } from '@/types/types';
+import { IOrder, NewOrder, Orders } from '@/types/types';
 
 class OrdersServiceApi {
   private BASE_URL = 'https://dzencode-test-tasks-rest-api.onrender.com/api';
@@ -7,6 +7,25 @@ class OrdersServiceApi {
     const options = {
       signal,
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    };
+
+    return fetch(`${this.BASE_URL}/orders`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          throw Error(data.message);
+        }
+        return data;
+      });
+  }
+
+  addOrder(data: NewOrder): Promise<IOrder> {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },

@@ -1,5 +1,5 @@
 import ordersServiceApi from '@/service/ordersServiceApi';
-import { IOrder, Orders } from '@/types/types';
+import { IOrder, NewOrder, Orders } from '@/types/types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchOrders = createAsyncThunk<
@@ -35,6 +35,27 @@ export const deleteOrder = createAsyncThunk<
   async (id: string, { rejectWithValue }: { rejectWithValue: Function }) => {
     try {
       const response = await ordersServiceApi.deleteOrder(id);
+      return response;
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const addOrder = createAsyncThunk<
+  IOrder,
+  NewOrder,
+  { rejectValue: string }
+>(
+  'orders/add',
+  async (
+    data: NewOrder,
+    { rejectWithValue }: { rejectWithValue: Function }
+  ) => {
+    try {
+      const response = await ordersServiceApi.addOrder(data);
       return response;
     } catch (error) {
       if (error instanceof Error) {

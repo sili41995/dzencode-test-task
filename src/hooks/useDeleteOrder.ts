@@ -22,8 +22,8 @@ const useDeleteOrder = () => {
           }
           toasts.successToast(Messages.delOrderSuccess);
         })
-        .catch(() => {
-          toasts.errorToast(Messages.delOrderFailed);
+        .catch((error) => {
+          toasts.errorToast(error);
         });
     }
   }, [dispatch, navigate, orderId, pathname, redirectPath]);

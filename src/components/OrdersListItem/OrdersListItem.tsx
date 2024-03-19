@@ -2,7 +2,13 @@ import { FC, useState } from 'react';
 import { IProps } from './OrdersListItem.types';
 import { NavLink, useLocation } from 'react-router-dom';
 import { PagePaths } from '@/constants';
-import { ListBtn, ListItem, Products, Wrapper } from './OrdersListItem.styled';
+import {
+  ListBtn,
+  ListItem,
+  Products,
+  Title,
+  Wrapper,
+} from './OrdersListItem.styled';
 import { FaListUl } from 'react-icons/fa';
 import { getOrderDateParams, getOrderPrice } from '@/utils';
 import ModalWin from '@/components/ModalWin';
@@ -42,7 +48,7 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
         aria-current={isActive && 'true'}
       >
         <NavLink to={`${PagePaths.orders}/${_id}`} state={{ from: location }}>
-          {isOrdersPage && <span className='h6'>{title}</span>}
+          {isOrdersPage && <Title className='h6'>{title}</Title>}
           <ListBtn type='button' className='btn btn-light'>
             <FaListUl size={20} />
           </ListBtn>
