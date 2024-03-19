@@ -11,7 +11,7 @@ export type Prices = IPrice[];
 export interface IProduct {
   _id: string;
   serialNumber: number;
-  isNew: number;
+  isNew: boolean;
   photo: string;
   title: string;
   type: string;

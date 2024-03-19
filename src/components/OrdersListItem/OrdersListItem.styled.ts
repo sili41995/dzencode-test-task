@@ -42,11 +42,3 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
-export const DelBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-color: transparent;
-  background-color: transparent;
-`;

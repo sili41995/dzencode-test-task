@@ -7,6 +7,9 @@ interface ITheme {
     white: string;
     accentColor: string;
     lightgreyColor: string;
+    greenColor: string;
+    borderColor: string;
+    redColor: string;
   };
   // fontFamily: {};
   // fontWeight: {};
@@ -28,6 +31,9 @@ const theme: ITheme = {
     white: '#ffffff',
     accentColor: '#0b44cd',
     lightgreyColor: '#d3d3d3',
+    greenColor: '#198754',
+    borderColor: '#DEE2E6',
+    redColor: '#FF0000',
   },
   // fontFamily: {},
   // fontWeight: {},

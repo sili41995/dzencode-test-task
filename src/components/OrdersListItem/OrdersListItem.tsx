@@ -2,21 +2,15 @@ import { FC, useState } from 'react';
 import { IProps } from './OrdersListItem.types';
 import { NavLink, useLocation } from 'react-router-dom';
 import { PagePaths } from '@/constants';
-import {
-  DelBtn,
-  ListBtn,
-  ListItem,
-  Products,
-  Wrapper,
-} from './OrdersListItem.styled';
+import { ListBtn, ListItem, Products, Wrapper } from './OrdersListItem.styled';
 import { FaListUl } from 'react-icons/fa';
 import { getOrderDateParams, getOrderPrice } from '@/utils';
-import { RiDeleteBin6Fill } from 'react-icons/ri';
 import ModalWin from '@/components/ModalWin';
 import DelOrderForm from '@/components/DelOrderForm';
 import { useAppSelector } from '@/hooks/redux';
 import { selectIsLoading } from '@/redux/orders/selectors';
 import { useDeleteOrder } from '@/hooks';
+import DelBtn from '@/components/DelBtn';
 
 const OrdersListItem: FC<IProps> = ({ order }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);
@@ -65,13 +59,7 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
             <span className='h5'>{`${defPrice} ${defSymbol}`}</span>
           </Wrapper>
         </NavLink>
-        <DelBtn
-          type='button'
-          className='btn btn-light'
-          onClick={setModalWinState}
-        >
-          <RiDeleteBin6Fill />
-        </DelBtn>
+        <DelBtn onClick={setModalWinState} disabled={false} />
       </ListItem>
       {showModalWin && (
         <ModalWin
