@@ -8,6 +8,11 @@ export interface IPrice {
 
 export type Prices = IPrice[];
 
+export interface IGuarantee {
+  start: string;
+  end: string;
+}
+
 export interface IProduct {
   _id: string;
   serialNumber: number;
@@ -16,10 +21,7 @@ export interface IProduct {
   title: string;
   type: string;
   specification: string;
-  guarantee: {
-    start: string;
-    end: string;
-  };
+  guarantee: IGuarantee;
   price: Prices;
   order: number;
   date: string;

@@ -2,13 +2,7 @@ import { FC, useState } from 'react';
 import { IProps } from './OrdersListItem.types';
 import { NavLink, useLocation } from 'react-router-dom';
 import { PagePaths } from '@/constants';
-import {
-  ListBtn,
-  ListItem,
-  Products,
-  Title,
-  Wrapper,
-} from './OrdersListItem.styled';
+import { ListBtn, ListItem, Products, Title } from './OrdersListItem.styled';
 import { FaListUl } from 'react-icons/fa';
 import { getDateParams, getOrderPrice } from '@/utils';
 import ModalWin from '@/components/ModalWin';
@@ -18,6 +12,7 @@ import { selectIsLoading } from '@/redux/orders/selectors';
 import { useDeleteOrder } from '@/hooks';
 import DelBtn from '@/components/DelBtn';
 import Date from '@/components/Date';
+import Price from '../Price';
 
 const OrdersListItem: FC<IProps> = ({ order }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);
@@ -58,10 +53,12 @@ const OrdersListItem: FC<IProps> = ({ order }) => {
             <span className='h6'>Продукта</span>
           </Products>
           <Date month={month} date={formattedDate} />
-          <Wrapper>
-            <span className='h6'>{`${price} ${symbol}`}</span>
-            <span className='h5'>{`${defPrice} ${defSymbol}`}</span>
-          </Wrapper>
+          <Price
+            defPrice={defPrice}
+            defSymbol={defSymbol}
+            price={price}
+            symbol={symbol}
+          />
         </NavLink>
         <DelBtn onClick={setModalWinState} disabled={false} />
       </ListItem>
