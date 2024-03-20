@@ -1,18 +1,18 @@
 import { FC, useState } from 'react';
-import { IProps } from './OrdersListItem.types';
 import { NavLink, useLocation } from 'react-router-dom';
-import { PagePaths } from '@/constants';
-import { ListBtn, ListItem, Products, Title } from './OrdersListItem.styled';
 import { FaListUl } from 'react-icons/fa';
+import { selectIsLoading } from '@/redux/orders/selectors';
+import { useAppSelector } from '@/hooks/redux';
+import { useDeleteOrder } from '@/hooks';
+import { PagePaths } from '@/constants';
 import { getDateParams, getOrderPrice } from '@/utils';
 import ModalWin from '@/components/ModalWin';
 import DelOrderForm from '@/components/DelOrderForm';
-import { useAppSelector } from '@/hooks/redux';
-import { selectIsLoading } from '@/redux/orders/selectors';
-import { useDeleteOrder } from '@/hooks';
 import DelBtn from '@/components/DelBtn';
 import Date from '@/components/Date';
-import Price from '../Price';
+import Price from '@/components/Price';
+import { IProps } from './OrdersListItem.types';
+import { ListBtn, ListItem, Products, Title } from './OrdersListItem.styled';
 
 const OrdersListItem: FC<IProps> = ({ order }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);

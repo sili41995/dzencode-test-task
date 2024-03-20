@@ -1,6 +1,6 @@
-import ordersServiceApi from '@/service/ordersServiceApi';
 import { FC, useEffect, useState } from 'react';
 import { connect } from 'socket.io-client';
+import ordersServiceApi from '@/service/ordersServiceApi';
 
 const socket = connect(ordersServiceApi.url);
 

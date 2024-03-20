@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { IProps } from './DelOrderForm.types';
 import DelOrderDetails from '@/components/DelOrderDetails';
+import { IProps } from './DelOrderForm.types';
 import {
   Button,
   ButtonsList,

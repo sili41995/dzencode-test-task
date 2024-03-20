@@ -1,7 +1,7 @@
-import { getTimeParams } from '@/utils';
 import { FC, useEffect, useRef, useState } from 'react';
-import { Container, DateWrap, TimeWrap } from './Clock.styled';
 import { LuClock9 } from 'react-icons/lu';
+import { getTimeParams } from '@/utils';
+import { Container, DateWrap, TimeWrap } from './Clock.styled';
 
 const Clock: FC = () => {
   const [date, setDate] = useState<Date>(new Date());

@@ -1,6 +1,6 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import ordersServiceApi from '@/service/ordersServiceApi';
 import { IOrder, NewOrder, Orders } from '@/types/types';
-import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchOrders = createAsyncThunk<
   Orders,

@@ -1,9 +1,9 @@
-import { SearchParamsKeys } from '@/constants';
-import { useSetSearchParams } from '@/hooks';
+import { ChangeEvent, FC } from 'react';
 import { useAppSelector } from '@/hooks/redux';
 import { selectProducts } from '@/redux/products/selectors';
+import { SearchParamsKeys } from '@/constants';
+import { useSetSearchParams } from '@/hooks';
 import { getFiltersValues } from '@/utils';
-import { ChangeEvent, FC } from 'react';
 import { Container, Label } from './Filter.styled';
 
 const Filter: FC = () => {

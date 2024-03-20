@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import ProductsListItem from '@/components/ProductsListItem';
 import { useFilteredProducts } from '@/hooks';
+import ProductsListItem from '@/components/ProductsListItem';
 import DefaultMessage from '@/components/DefaultMessage';
 import { Messages } from '@/constants';
 import { List } from './Products.styled';

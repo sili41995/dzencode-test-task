@@ -1,12 +1,12 @@
 import { FC, useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useAppDispatch } from '@/hooks/redux';
+import { addOrder } from '@/redux/orders/operations';
 import Input from '@/components/Input';
 import { InputTypes, Messages } from '@/constants';
 import { NewOrder } from '@/types/types';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { toasts } from '@/utils';
 import { ButtonsList, Container, ListItem, Title } from './AddOrderForm.styled';
-import { useAppDispatch } from '@/hooks/redux';
-import { addOrder } from '@/redux/orders/operations';
 
 const AddOrderForm: FC = () => {
   const {

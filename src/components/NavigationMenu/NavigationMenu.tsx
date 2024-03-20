@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { List, ListItem } from './NavigationMenu.styled';
 import { NavLink } from 'react-router-dom';
 import { PagePaths } from '@/constants';
+import { List, ListItem } from './NavigationMenu.styled';
 
 const NavigationMenu: FC = () => (
   <List className='nav nav-underline'>

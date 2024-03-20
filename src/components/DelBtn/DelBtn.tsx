@@ -1,7 +1,7 @@
+import { FC } from 'react';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { Button } from './DelBtn.styled';
 import { IProps } from './DelBtn.types';
-import { FC } from 'react';
 
 const DelBtn: FC<IProps> = ({ onClick, disabled }) => (
   <Button

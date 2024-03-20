@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import DelProductDetails from '@/components/DelProductDetails';
 import { IProps } from './DelProductForm.types';
 import {
   Button,
@@ -7,7 +8,6 @@ import {
   ListItem,
   Title,
 } from './DelProductForm.styled';
-import DelProductDetails from '@/components/DelProductDetails';
 
 const DelOrderForm: FC<IProps> = ({
   product,

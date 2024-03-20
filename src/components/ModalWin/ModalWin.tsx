@@ -1,9 +1,9 @@
 import { FC, useEffect } from 'react';
-import { IProps } from './ModalWin.types';
 import { createPortal } from 'react-dom';
 import { DivClickEvent } from '@/types/types';
-import { Backdrop, Container } from './ModalWin.styled';
 import CloseBtn from '@/components/CloseBtn';
+import { IProps } from './ModalWin.types';
+import { Backdrop, Container } from './ModalWin.styled';
 
 const ModalWin: FC<IProps> = ({ children, setModalWinState }) => {
   const modalRoot = document.querySelector('#modal-root');

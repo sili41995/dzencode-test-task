@@ -1,7 +1,7 @@
+import { ru } from 'date-fns/locale';
+import { format, setDefaultOptions } from 'date-fns';
 import { DateFormats } from '@/constants';
 import { IGetTimeParams } from '@/types/types';
-import { format, setDefaultOptions } from 'date-fns';
-import { ru } from 'date-fns/locale';
 
 const getTimeParams = (date: Date): IGetTimeParams => {
   setDefaultOptions({ locale: ru });

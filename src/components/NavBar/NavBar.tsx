@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Avatar, Container, ImgWrap, SettingsBtn } from './NavBar.styled';
 import { IoMdSettings } from 'react-icons/io';
 import NavigationMenu from '@/components/NavigationMenu';
+import { Avatar, Container, ImgWrap, SettingsBtn } from './NavBar.styled';
 
 const NavBar: FC = () => {
   return (

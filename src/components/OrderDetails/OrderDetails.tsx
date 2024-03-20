@@ -1,4 +1,15 @@
 import { FC } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { FaPlus } from 'react-icons/fa';
+import { selectIsLoading } from '@/redux/orders/selectors';
+import { useAppSelector } from '@/hooks/redux';
+import { Messages, PagePaths } from '@/constants';
+import CloseBtn from '@/components/CloseBtn';
+import DelBtn from '@/components/DelBtn';
+import DefaultMessage from '@/components/DefaultMessage';
+import IsNewStatus from '@/components/IsNewStatus';
+import ProductTitle from '@/components/ProductTitle';
+import Status from '@/components/Status';
 import { IProps } from './OrderDetails.types';
 import {
   AddBtn,
@@ -9,17 +20,6 @@ import {
   ListItem,
   Title,
 } from './OrderDetails.styles';
-import { useLocation, useNavigate } from 'react-router-dom';
-import CloseBtn from '@/components/CloseBtn';
-import { Messages, PagePaths } from '@/constants';
-import { FaPlus } from 'react-icons/fa';
-import DelBtn from '@/components/DelBtn';
-import { useAppSelector } from '@/hooks/redux';
-import { selectIsLoading } from '@/redux/orders/selectors';
-import DefaultMessage from '@/components/DefaultMessage';
-import IsNewStatus from '@/components/IsNewStatus';
-import ProductTitle from '@/components/ProductTitle';
-import Status from '@/components/Status';
 
 const OrderDetails: FC<IProps> = ({ order }) => {
   const { products, title } = order;

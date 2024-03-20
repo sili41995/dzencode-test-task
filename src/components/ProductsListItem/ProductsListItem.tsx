@@ -1,19 +1,19 @@
+import { FC, useState } from 'react';
+import { useAppSelector } from '@/hooks/redux';
+import { selectIsLoading } from '@/redux/products/selectors';
 import Status from '@/components/Status';
 import ProductTitle from '@/components/ProductTitle';
 import IsNewStatus from '@/components/IsNewStatus';
 import Guarantee from '@/components/Guarantee';
-import { getDateParams, getGuaranteeDate, getOrderPrice } from '@/utils';
-import { IProps } from './ProductsListItem.types';
-import { FC, useState } from 'react';
 import Price from '@/components/Price';
 import Date from '@/components/Date';
 import DelBtn from '@/components/DelBtn';
-import { ListItem } from './ProductsListItem.styled';
 import DelProductForm from '@/components/DelProductForm';
 import ModalWin from '@/components/ModalWin';
-import { useAppSelector } from '@/hooks/redux';
-import { selectIsLoading } from '@/redux/products/selectors';
-import useDeleteProduct from '@/hooks/useDeleteProduct';
+import { getDateParams, getGuaranteeDate, getOrderPrice } from '@/utils';
+import { useDeleteProduct } from '@/hooks';
+import { IProps } from './ProductsListItem.types';
+import { ListItem } from './ProductsListItem.styled';
 
 const ProductsListItem: FC<IProps> = ({ product }) => {
   const [showModalWin, setShowModalWin] = useState<boolean>(false);
