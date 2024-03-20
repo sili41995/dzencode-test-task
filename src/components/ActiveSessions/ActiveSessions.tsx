@@ -12,10 +12,16 @@ const ActiveSessions: FC = () => {
   }, []);
 
   useEffect(() => {
+    socket.on('user-disconnect', (data) => {
+      setActiveSessions(data);
+    });
+  });
+
+  useEffect(() => {
     socket.on('new-connection', (data) => {
       setActiveSessions(data);
     });
-  }, []);
+  });
 
   return <p className='h3'>{`Активных сессий: ${activeSessions}`}</p>;
 };
