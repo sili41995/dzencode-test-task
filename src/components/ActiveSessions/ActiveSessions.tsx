@@ -5,7 +5,7 @@ import { connect } from 'socket.io-client';
 const socket = connect(ordersServiceApi.url);
 
 const ActiveSessions: FC = () => {
-  const [activeSessions, setActiveSessions] = useState<number>(0);
+  const [activeSessions, setActiveSessions] = useState<number>(1);
 
   useEffect(() => {
     socket.emit('new-connection', 'new-connection');

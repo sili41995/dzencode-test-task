@@ -1,7 +1,7 @@
 import { IOrder, IProduct, NewOrder, Orders } from '@/types/types';
 
 class OrdersServiceApi {
-  private BASE_URL = 'http://localhost:3000';
+  private BASE_URL = 'https://dzencode-test-tasks-rest-api.onrender.com';
 
   get url() {
     return this.BASE_URL;
