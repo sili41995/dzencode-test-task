@@ -17,7 +17,7 @@ const ActiveSessions: FC = () => {
     });
   }, []);
 
-  return <div>{activeSessions}</div>;
+  return <p className='h3'>{`Активных сессий: ${activeSessions}`}</p>;
 };
 
 export default ActiveSessions;
