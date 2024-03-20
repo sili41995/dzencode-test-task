@@ -1,5 +1,6 @@
 import AddBtn from '@/components/AddBtn';
 import AddOrderForm from '@/components/AddOrderForm';
+import AnimatedContainer from '@/components/AnimatedContainer';
 import Container from '@/components/Container';
 import Loader from '@/components/Loader';
 import ModalWin from '@/components/ModalWin';
@@ -36,7 +37,7 @@ const OrdersPage: FC = () => {
   };
 
   return (
-    <>
+    <AnimatedContainer>
       {isLoading ? (
         <Loader />
       ) : (
@@ -56,7 +57,7 @@ const OrdersPage: FC = () => {
           <AddOrderForm />
         </ModalWin>
       )}
-    </>
+    </AnimatedContainer>
   );
 };
 

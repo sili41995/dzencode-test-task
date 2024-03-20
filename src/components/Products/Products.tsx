@@ -3,17 +3,18 @@ import ProductsListItem from '@/components/ProductsListItem';
 import { useFilteredProducts } from '@/hooks';
 import DefaultMessage from '@/components/DefaultMessage';
 import { Messages } from '@/constants';
+import { List } from './Products.styled';
 
 const Products: FC = () => {
   const products = useFilteredProducts();
   const showProductsList = Boolean(products.length);
 
   return showProductsList ? (
-    <ul className='list-group'>
+    <List className='list-group'>
       {products.map((product) => (
         <ProductsListItem product={product} key={product._id} />
       ))}
-    </ul>
+    </List>
   ) : (
     <DefaultMessage message={Messages.emptyFilteredProductsList} />
   );

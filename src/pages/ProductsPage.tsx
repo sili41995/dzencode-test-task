@@ -1,3 +1,4 @@
+import AnimatedContainer from '@/components/AnimatedContainer';
 import Container from '@/components/Container';
 import DefaultMessage from '@/components/DefaultMessage';
 import Filter from '@/components/Filter';
@@ -26,20 +27,26 @@ const ProductsPage: FC = () => {
     };
   }, [dispatch]);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <SectionWrap>
-      <Container>
-        <Title title={pageTitle} />
-        <Filter />
-      </Container>
-      {showProductsList ? (
-        <Products />
+  return (
+    <AnimatedContainer>
+      {isLoading ? (
+        <Loader />
       ) : (
-        <DefaultMessage message={Messages.emptyProductsList} />
+        <SectionWrap>
+          <Container>
+            <Title title={pageTitle} />
+            <Filter />
+          </Container>
+          <Container>
+            {showProductsList ? (
+              <Products />
+            ) : (
+              <DefaultMessage message={Messages.emptyProductsList} />
+            )}
+          </Container>
+        </SectionWrap>
       )}
-    </SectionWrap>
+    </AnimatedContainer>
   );
 };
 
