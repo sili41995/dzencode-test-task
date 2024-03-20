@@ -1,7 +1,15 @@
 import { IOrder, IProduct, NewOrder, Orders } from '@/types/types';
 
 class OrdersServiceApi {
-  private BASE_URL = 'https://dzencode-test-tasks-rest-api.onrender.com/api';
+  private BASE_URL = 'http://localhost:3000';
+
+  get url() {
+    return this.BASE_URL;
+  }
+
+  set url(newUrl) {
+    this.BASE_URL = newUrl;
+  }
 
   fetchOrders(signal: AbortSignal): Promise<Orders> {
     const options = {
@@ -12,7 +20,7 @@ class OrdersServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}/orders`, options)
+    return fetch(`${this.BASE_URL}/api/orders`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
@@ -31,7 +39,7 @@ class OrdersServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}/orders`, options)
+    return fetch(`${this.BASE_URL}/api/orders`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
@@ -49,7 +57,7 @@ class OrdersServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}/orders/${id}`, options)
+    return fetch(`${this.BASE_URL}/api/orders/${id}`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
@@ -68,7 +76,7 @@ class OrdersServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}/products`, options)
+    return fetch(`${this.BASE_URL}/api/products`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
@@ -86,7 +94,7 @@ class OrdersServiceApi {
       },
     };
 
-    return fetch(`${this.BASE_URL}/products/${id}`, options)
+    return fetch(`${this.BASE_URL}/api/products/${id}`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
