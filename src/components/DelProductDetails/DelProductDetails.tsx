@@ -9,8 +9,8 @@ const DelProductDetails: FC<IProps> = ({ product }) => {
     <Container>
       <Img src={photo} alt={title} width='80' height='80' />
       <TitleWrap>
-        <p className='display-6'>{title}</p>
-        <p className='display-6'>{serialNumber}</p>
+        <p className='h4'>{title}</p>
+        <p className='h4'>{serialNumber}</p>
       </TitleWrap>
     </Container>
   );

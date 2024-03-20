@@ -5,6 +5,7 @@ export const Header = styled.header`
   /* min-width: 100%; */
   /* padding-top: ${({ theme }) => theme.spacing(5)}; */
   /* padding-bottom: ${({ theme }) => theme.spacing(5)}; */
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightgreyColor};
 `;
 
 export const Container = styled.div`
@@ -21,6 +22,6 @@ export const Container = styled.div`
 export const Main = styled.main``;
 
 export const Section = styled.section`
-  /* padding-top: ${({ theme }) => theme.padding.container}px; */
-  /* padding-bottom: ${({ theme }) => theme.padding.container}px; */
+  padding-top: ${({ theme }) => theme.padding.section}px;
+  padding-bottom: ${({ theme }) => theme.padding.section}px;
 `;

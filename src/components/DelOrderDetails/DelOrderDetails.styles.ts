@@ -13,4 +13,8 @@ export const TitleWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(4)};
+
+  & > p {
+    margin-bottom: 0;
+  }
 `;

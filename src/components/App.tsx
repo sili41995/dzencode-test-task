@@ -6,6 +6,9 @@ import SharedLayout from '@/components/SharedLayout';
 const OrdersPage = lazy(() => import('@/pages/OrdersPage'));
 const OrderDetailsPage = lazy(() => import('@/pages/OrderDetailsPage'));
 const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
+const SettingsPage = lazy(() => import('@/pages/SettingsPage'));
+const UsersPage = lazy(() => import('@/pages/UsersPage'));
+const GroupsPage = lazy(() => import('@/pages/GroupsPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 const App: FC = () => {
@@ -20,6 +23,9 @@ const App: FC = () => {
           />
         </Route>
         <Route path={PagePaths.products} element={<ProductsPage />} />
+        <Route path={PagePaths.settings} element={<SettingsPage />} />
+        <Route path={PagePaths.users} element={<UsersPage />} />
+        <Route path={PagePaths.groups} element={<GroupsPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
     </Routes>

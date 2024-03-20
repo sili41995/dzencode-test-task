@@ -16,6 +16,7 @@ interface ITheme {
   // fontSize: {};
   padding: {
     container: number;
+    section: number;
   };
   // borderRadius: {};
   containerWidth: {
@@ -40,6 +41,7 @@ const theme: ITheme = {
   // fontSize: {},
   padding: {
     container: 16,
+    section: 50,
   },
   // borderRadius: {},
   containerWidth: {

@@ -17,9 +17,7 @@ const DelOrderForm: FC<IProps> = ({
 }) => {
   return (
     <Container>
-      <Title className='display-6'>
-        Вы уверены, что хотите удалить этот приход?
-      </Title>
+      <Title className='h3'>Вы уверены, что хотите удалить этот приход?</Title>
       <DelOrderDetails products={products} />
       <ButtonsList>
         <ListItem>

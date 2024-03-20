@@ -95,3 +95,9 @@ export interface IFilterProductsProps {
   products: Products;
   filter: string;
 }
+
+export interface IGetTimeParams {
+  day: string;
+  fullDate: string;
+  time: string;
+}
