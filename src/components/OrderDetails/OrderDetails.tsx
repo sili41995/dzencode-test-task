@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
 import { selectIsLoading } from '@/redux/orders/selectors';
@@ -10,6 +10,7 @@ import DefaultMessage from '@/components/DefaultMessage';
 import IsNewStatus from '@/components/IsNewStatus';
 import ProductTitle from '@/components/ProductTitle';
 import Status from '@/components/Status';
+import ModalWin from '@/components/ModalWin';
 import { IProps } from './OrderDetails.types';
 import {
   AddBtn,
@@ -20,8 +21,10 @@ import {
   ListItem,
   Title,
 } from './OrderDetails.styles';
+import DelProductForm from '@/components/DelProductForm';
 
 const OrderDetails: FC<IProps> = ({ order }) => {
+  const [showModalWin, setShowModalWin] = useState<boolean>(false);
   const { products, title } = order;
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,6 +34,10 @@ const OrderDetails: FC<IProps> = ({ order }) => {
 
   const onCloseBtnClick = () => {
     navigate(redirectPath);
+  };
+
+  const setModalWinState = () => {
+    setShowModalWin((prevState) => !prevState);
   };
 
   const onDelBtnClick = () => {};
@@ -46,14 +53,32 @@ const OrderDetails: FC<IProps> = ({ order }) => {
       </AddBtn>
       {shouldShowOrdersList ? (
         <List className='list-group'>
-          {products.map(({ _id, photo, title, serialNumber, isNew }) => (
-            <ListItem className='list-group-item' key={_id}>
-              <Status isNew={isNew} />
-              <img src={photo} alt={title} width='60' height='60' />
-              <ProductTitle serialNumber={serialNumber} title={title} />
-              <IsNewStatus isNew={isNew} />
-              <DelBtn onClick={onDelBtnClick} disabled={isLoading} />
-            </ListItem>
+          {products.map((product) => (
+            <>
+              <ListItem className='list-group-item' key={product._id}>
+                <Status isNew={product.isNew} />
+                <img src={product.photo} alt={title} width='60' height='60' />
+                <ProductTitle
+                  serialNumber={product.serialNumber}
+                  title={title}
+                />
+                <IsNewStatus isNew={product.isNew} />
+                <DelBtn onClick={setModalWinState} disabled={isLoading} />
+              </ListItem>
+              {showModalWin && (
+                <ModalWin
+                  setModalWinState={setModalWinState}
+                  children={
+                    <DelProductForm
+                      product={product}
+                      disabled={isLoading}
+                      setModalWinState={setModalWinState}
+                      onClick={onDelBtnClick}
+                    />
+                  }
+                />
+              )}
+            </>
           ))}
         </List>
       ) : (
